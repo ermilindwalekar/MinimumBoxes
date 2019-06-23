@@ -29,6 +29,7 @@ void findMinimalBoxes(int item, map<char, int>& solution){
     }
 
     if(item >= LARGE){
+       //Try inserting the pair, if not inserted then it is already present so just increment the counter
         if(solution.insert({'L', item/LARGE}).second == false){
             map<char, int>::iterator it = solution.find('L');
             ++it->second;
