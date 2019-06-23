@@ -29,30 +29,20 @@ void findMinimalBoxes(int item, map<char, int>& solution){
     }
 
     if(item >= LARGE){
-       //Try inserting the pair, if not inserted then it is already present so just increment the counter
-        if(solution.insert({'L', item/LARGE}).second == false){
-            map<char, int>::iterator it = solution.find('L');
-            ++it->second;
-        }
+        solution.insert({'L', item/LARGE});
         //Recursively call the function with left over items to place
         findMinimalBoxes(item % LARGE, solution);
         return;
     }
 
     if(item >= MEDIUM){
-        if(solution.insert({'M', item/MEDIUM}).second == false){
-            map<char, int>::iterator it = solution.find('M');
-            ++it->second;
-        }
+        solution.insert({'M', item/MEDIUM});
         findMinimalBoxes(item % MEDIUM, solution);
         return;
     }
 
     if(item >= SMALL){
-        if(solution.insert({'S', item/SMALL}).second == false){
-            map<char, int>::iterator it = solution.find('S');
-            ++it->second;
-        }
+        solution.insert({'S', item/SMALL});
         findMinimalBoxes(item % SMALL, solution);
     }
 }
@@ -63,7 +53,7 @@ int main()
     map<char,int> solution;
     map<char,int>::iterator it;
 
-    findMinimalBoxes(104, solution);
+    findMinimalBoxes(37, solution);
 
     for(it = solution.begin(); it != solution.end(); it++){
         cout<< it->first << " " << it->second<<endl;
